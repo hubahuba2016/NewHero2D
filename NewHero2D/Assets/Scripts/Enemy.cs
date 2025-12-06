@@ -25,12 +25,13 @@ public class Enemy : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.CompareTag("Player"))
     {
-        if (other.CompareTag("Player"))
-        {
-            // Handle player damage here later
-            Debug.Log("Player hit!");
-        }
+        Debug.Log("Player hit!");
+        GameManager.Instance.GameOver();
     }
+}
+
 }
 

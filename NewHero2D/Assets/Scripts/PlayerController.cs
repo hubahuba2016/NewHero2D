@@ -31,6 +31,17 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
+        if (Input.GetKeyDown(KeyCode.Space)) // or your mobile button
+        {
+            if (GameManager.Instance.UseAmmo())
+            {
+                Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameManager.Instance.Reload();
+        }
     }
 
     void FixedUpdate()
@@ -40,6 +51,9 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+        if (GameManager.Instance.UseAmmo())
+            {
+                Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            }
     }
 }
